@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>💖 หัวใจสำหรับพี่ออย</title>
+<style>
+:root{--bg:#fff0f4;--text:#4a1d2c;--muted:#9a6b7a;--h1:#ff6b8f;--h2:#d81b60;--glow:rgba(216,27,96,.35);color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1b0f14;--text:#ffe8ef;--muted:#c79aab;--h1:#ff8fb1;--h2:#ff4d6d;--glow:rgba(255,77,109,.45);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1b0f14;--text:#ffe8ef;--muted:#c79aab;--h1:#ff8fb1;--h2:#ff4d6d;--glow:rgba(255,77,109,.45);color-scheme:dark}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--text);font-family:"Noto Sans Thai",system-ui,-apple-system,"Segoe UI",sans-serif;overflow:hidden;-webkit-tap-highlight-color:transparent;user-select:none}
+main{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:16px}
+#h{width:min(62vw,300px);overflow:visible;cursor:pointer;filter:drop-shadow(0 8px 24px var(--glow));animation:beat 1.4s ease-in-out infinite}
+#h path{fill:url(#g)}
+@keyframes beat{0%,100%{transform:scale(1)}15%{transform:scale(1.14)}30%{transform:scale(1)}45%{transform:scale(1.1)}}
+h1{font-size:clamp(1.5rem,6vw,2.2rem);margin:14px 0 0;min-height:1.3em}
+p{margin:0;color:var(--muted)}
+.f{position:fixed;bottom:-48px;pointer-events:none;opacity:.9;animation:up var(--d) linear forwards}
+@keyframes up{to{transform:translateY(-115vh) rotate(var(--r));opacity:0}}
+.p{position:fixed;pointer-events:none;font-size:22px;animation:pop .9s ease-out forwards}
+@keyframes pop{to{transform:translate(var(--dx),var(--dy)) scale(.4);opacity:0}}
+.s{position:fixed;font-size:clamp(36px,10vw,56px);line-height:1;cursor:pointer;z-index:2;animation:var(--a) var(--t,2s) ease-in-out infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+@keyframes sway{0%,100%{transform:rotate(-14deg)}50%{transform:rotate(14deg)}}
+@keyframes wiggle{0%,100%{transform:scale(1) rotate(0)}25%{transform:scale(1.15) rotate(-8deg)}75%{transform:scale(1.15) rotate(8deg)}}
+@keyframes flutter{0%,100%{transform:translate(0,0) rotate(-10deg)}50%{transform:translate(8px,-12px) rotate(10deg)}}
+@keyframes twinkle{0%,100%{transform:scale(1) rotate(0);opacity:1}50%{transform:scale(1.3) rotate(25deg);opacity:.7}}
+.s.hop{animation:hop .6s ease-out}
+@keyframes hop{0%{transform:translateY(0) scale(1)}40%{transform:translateY(-40px) scale(1.3) rotate(-10deg)}100%{transform:translateY(0) scale(1)}}
+@media (prefers-reduced-motion:reduce){#h{animation:none}.f{display:none}.s{animation:none}}
+</style>
+</head>
+<body>
+<main>
+  <svg id="h" viewBox="0 0 100 90" role="img" aria-label="หัวใจ">
+    <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--h1)"/><stop offset="1" stop-color="var(--h2)"/></linearGradient></defs>
+    <path d="M50 85C10 55-5 30 15 12 30 0 45 8 50 22 55 8 70 0 85 12 105 30 90 55 50 85Z"/>
+  </svg>
+  <h1 id="msg">ใครกดมา</h1>
+  <p id="sub">แตะที่หัวใจเพื่อเสว</p>
+</main>
+<div class="s" style="--a:bounce;--t:1.8s;top:6%;left:5%">🐻</div>
+<div class="s" style="--a:wiggle;--t:1.6s;top:6%;right:5%">🐰</div>
+<div class="s" style="--a:flutter;--t:2.2s;top:38%;left:3%">🦋</div>
+<div class="s" style="--a:sway;--t:2.4s;top:42%;right:3%">🌸</div>
+<div class="s" style="--a:bounce;--t:1.4s;bottom:7%;left:8%">🐥</div>
+<div class="s" style="--a:twinkle;--t:1.8s;bottom:9%;right:9%">⭐</div>
+<script>
+const $=id=>document.getElementById(id);
+const icons=['💖','💗','💕','💘','❤️','💞'];
+const msgs=['คิดถึงพี่ออยน้าาา','พี่จ๋า ไม่ไหวแล้ววว','น่ารักจางง','เฮียหึง','ฉันจ้องจะเล่นคุณ'];
+let n=0,mi=-1;
+function float(){
+  const e=document.createElement('span');
+  e.className='f';e.textContent=icons[Math.random()*icons.length|0];
+  e.style.left=Math.random()*96+'vw';
+  e.style.fontSize=(16+Math.random()*26)+'px';
+  e.style.setProperty('--d',(5+Math.random()*5)+'s');
+  e.style.setProperty('--r',(Math.random()*60-30)+'deg');
+  document.body.appendChild(e);
+  setTimeout(()=>e.remove(),10500);
+}
+function burst(x,y,k){
+  for(let i=0;i<k;i++){
+    const e=document.createElement('span');
+    e.className='p';e.textContent=icons[Math.random()*icons.length|0];
+    const a=Math.random()*6.283,r=60+Math.random()*110;
+    e.style.left=x+'px';e.style.top=y+'px';
+    e.style.setProperty('--dx',Math.cos(a)*r+'px');
+    e.style.setProperty('--dy',Math.sin(a)*r+'px');
+    document.body.appendChild(e);
+    setTimeout(()=>e.remove(),1000);
+  }
+}
+$('h').addEventListener('click',e=>{
+  n++;mi=(mi+1)%msgs.length;
+  $('msg').textContent=msgs[mi];
+  burst(e.clientX,e.clientY,14);
+  e.stopPropagation();
+});
+document.body.addEventListener('click',e=>burst(e.clientX,e.clientY,6));
+document.querySelectorAll('.s').forEach(s=>s.addEventListener('click',e=>{
+  e.stopPropagation();
+  s.classList.remove('hop');void s.offsetWidth;s.classList.add('hop');
+  burst(e.clientX,e.clientY,8);
+  setTimeout(()=>s.classList.remove('hop'),650);
+}));
+for(let i=0;i<6;i++)setTimeout(float,i*250);
+setInterval(float,600);
+</script>
+</body>
+</html>
